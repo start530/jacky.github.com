@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: TinyXML | Jacky's Blog]]></title>
-  <link href="http://www.fusijie.com/tags/tinyxml/atom.xml" rel="self"/>
-  <link href="http://www.fusijie.com/"/>
-  <updated>2014-05-06T22:12:34+08:00</updated>
-  <id>http://www.fusijie.com/</id>
+  <title><![CDATA[Tag: TinyXML | Star's Blog]]></title>
+  <link href="http://start530.github.io/tags/tinyxml/atom.xml" rel="self"/>
+  <link href="http://start530.github.io/"/>
+  <updated>2014-05-06T22:25:13+08:00</updated>
+  <id>http://start530.github.io/</id>
   <author>
     <name><![CDATA[FuSijie]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十二】xml的解析]]></title>
-    <link href="http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32/"/>
+    <link href="http://start530.github.io/blog/2013/12/18/play-cocos2dx-32/"/>
     <updated>2013-12-18T09:30:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32</id>
+    <id>http://start530.github.io/blog/2013/12/18/play-cocos2dx-32</id>
     <content type="html"><![CDATA[<p>cocos2d-x中对xml的解析是采用的TinyXML库，而对plist的解析同时结合了CCDictionary来处理，这里简单介绍下cocos2d-x中解析xml的两种方式，也是常用的xml两个C++解析库：TinyXML和RapidXML。xml被设计用于数据存储和传输，重点是数据内容本身，而不像html，用于表现数据。</p>
 
 <h3>1.TinyXML</h3>

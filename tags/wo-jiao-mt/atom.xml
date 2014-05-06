@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: 我叫MT | Jacky's Blog]]></title>
-  <link href="http://www.fusijie.com/tags/wo-jiao-mt/atom.xml" rel="self"/>
-  <link href="http://www.fusijie.com/"/>
-  <updated>2014-05-06T22:12:34+08:00</updated>
-  <id>http://www.fusijie.com/</id>
+  <title><![CDATA[Tag: 我叫MT | Star's Blog]]></title>
+  <link href="http://start530.github.io/tags/wo-jiao-mt/atom.xml" rel="self"/>
+  <link href="http://start530.github.io/"/>
+  <updated>2014-05-06T22:25:13+08:00</updated>
+  <id>http://start530.github.io/</id>
   <author>
     <name><![CDATA[FuSijie]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十五】《我叫MT offline》Demo]]></title>
-    <link href="http://www.fusijie.com/blog/2014/02/25/play-cocos2dx-35/"/>
+    <link href="http://start530.github.io/blog/2014/02/25/play-cocos2dx-35/"/>
     <updated>2014-02-25T19:43:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2014/02/25/play-cocos2dx-35</id>
+    <id>http://start530.github.io/blog/2014/02/25/play-cocos2dx-35</id>
     <content type="html"><![CDATA[<h3>1.写在前面</h3>
 
 <p><strong>这是怎样一个游戏？</strong></p>
@@ -51,7 +51,7 @@
 
 <p><strong>公告</strong></p>
 
-<div align="center"><img src="http://www.fusijie.com/images/Blog/mt/announcement.png" alt="" border="0" title="4" /><br></br></div>
+<div align="center"><img src="http://start530.github.io/images/Blog/mt/announcement.png" alt="" border="0" title="4" /><br></br></div>
 
 
 <p><strong>游戏</strong></p>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jacky's Blog]]></title>
-  <link href="http://www.fusijie.com/atom.xml" rel="self"/>
-  <link href="http://www.fusijie.com/"/>
-  <updated>2014-05-06T22:12:34+08:00</updated>
-  <id>http://www.fusijie.com/</id>
+  <title><![CDATA[Star's Blog]]></title>
+  <link href="http://start530.github.io/atom.xml" rel="self"/>
+  <link href="http://start530.github.io/"/>
+  <updated>2014-05-06T22:25:13+08:00</updated>
+  <id>http://start530.github.io/</id>
   <author>
     <name><![CDATA[FuSijie]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十五】《我叫MT offline》Demo]]></title>
-    <link href="http://www.fusijie.com/blog/2014/02/25/play-cocos2dx-35/"/>
+    <link href="http://start530.github.io/blog/2014/02/25/play-cocos2dx-35/"/>
     <updated>2014-02-25T19:43:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2014/02/25/play-cocos2dx-35</id>
+    <id>http://start530.github.io/blog/2014/02/25/play-cocos2dx-35</id>
     <content type="html"><![CDATA[<h3>1.写在前面</h3>
 
 <p><strong>这是怎样一个游戏？</strong></p>
@@ -51,7 +51,7 @@
 
 <p><strong>公告</strong></p>
 
-<div align="center"><img src="http://www.fusijie.com/images/Blog/mt/announcement.png" alt="" border="0" title="4" /><br></br></div>
+<div align="center"><img src="http://start530.github.io/images/Blog/mt/announcement.png" alt="" border="0" title="4" /><br></br></div>
 
 
 <p><strong>游戏</strong></p>
@@ -123,15 +123,15 @@
 
 <p><strong>攻略</strong></p>
 
-<p><a href="http://www.fusijie.com/images/Blog/mt/more.gif">http://www.fusijie.com/images/Blog/mt/more.gif</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2014/02/25/play-cocos2dx-35/'><a href="http://www.fusijie.com/blog/2014/02/25/play-cocos2dx-35/">http://www.fusijie.com/blog/2014/02/25/play-cocos2dx-35/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://www.fusijie.com/images/Blog/mt/more.gif">http://www.fusijie.com/images/Blog/mt/more.gif</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2014/02/25/play-cocos2dx-35/'><a href="http://start530.github.io/blog/2014/02/25/play-cocos2dx-35/">http://start530.github.io/blog/2014/02/25/play-cocos2dx-35/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十四】绘图：CCDrawingPrimitives和CCDrawNode]]></title>
-    <link href="http://www.fusijie.com/blog/2014/02/08/play-cocos2dx-34/"/>
+    <link href="http://start530.github.io/blog/2014/02/08/play-cocos2dx-34/"/>
     <updated>2014-02-08T16:10:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2014/02/08/play-cocos2dx-34</id>
+    <id>http://start530.github.io/blog/2014/02/08/play-cocos2dx-34</id>
     <content type="html"><![CDATA[<p>最近忙出翔了，这年过的也揪心。好久没来更新博客了，今天就来写一写cocos2d-x中图形的绘制。</p>
 
 <h3>1.概述</h3>
@@ -293,15 +293,15 @@
 
 <h3>4.源码下载</h3>
 
-<p>可以自己看TestCpp示例，也可以从<a href="http://download.csdn.net/detail/jackyvincefu/6903357">这里</a>下载。<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2014/02/08/play-cocos2dx-34/'><a href="http://www.fusijie.com/blog/2014/02/08/play-cocos2dx-34/">http://www.fusijie.com/blog/2014/02/08/play-cocos2dx-34/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p>可以自己看TestCpp示例，也可以从<a href="http://download.csdn.net/detail/jackyvincefu/6903357">这里</a>下载。<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2014/02/08/play-cocos2dx-34/'><a href="http://start530.github.io/blog/2014/02/08/play-cocos2dx-34/">http://start530.github.io/blog/2014/02/08/play-cocos2dx-34/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十三】游戏嵌入Webview网页]]></title>
-    <link href="http://www.fusijie.com/blog/2013/12/26/play-cocos2dx-33/"/>
+    <link href="http://start530.github.io/blog/2013/12/26/play-cocos2dx-33/"/>
     <updated>2013-12-26T14:11:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/12/26/play-cocos2dx-33</id>
+    <id>http://start530.github.io/blog/2013/12/26/play-cocos2dx-33</id>
     <content type="html"><![CDATA[<p>手游《我叫MT》一开始会弹出一个游戏公告，有玩过的肯定都蛮熟悉的，这就是webview，就是一个网页。由于webview和平台相关，这里就介绍下cocos2d-x如何嵌入andorid的webview控件，在cocos2d-x中显示网页。</p>
 
 <h3>1.Jni</h3>
@@ -646,16 +646,16 @@
 
 <p><a href="http://download.csdn.net/detail/jackyvincefu/6770315">下载地址</a></p>
 
-<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/26/play-cocos2dx-33/'>http://www.fusijie.com/blog/2013/12/26/play-cocos2dx-33/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/12/26/play-cocos2dx-33/'>http://start530.github.io/blog/2013/12/26/play-cocos2dx-33/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十二】xml的解析]]></title>
-    <link href="http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32/"/>
+    <link href="http://start530.github.io/blog/2013/12/18/play-cocos2dx-32/"/>
     <updated>2013-12-18T09:30:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32</id>
+    <id>http://start530.github.io/blog/2013/12/18/play-cocos2dx-32</id>
     <content type="html"><![CDATA[<p>cocos2d-x中对xml的解析是采用的TinyXML库，而对plist的解析同时结合了CCDictionary来处理，这里简单介绍下cocos2d-x中解析xml的两种方式，也是常用的xml两个C++解析库：TinyXML和RapidXML。xml被设计用于数据存储和传输，重点是数据内容本身，而不像html，用于表现数据。</p>
 
 <h3>1.TinyXML</h3>
@@ -938,16 +938,16 @@
 
 <p><a href="http://download.csdn.net/detail/jackyvincefu/6732361">下载地址</a></p>
 
-<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32/'>http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/12/18/play-cocos2dx-32/'>http://start530.github.io/blog/2013/12/18/play-cocos2dx-32/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十一】服务器的网络通信编程]]></title>
-    <link href="http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31/"/>
+    <link href="http://start530.github.io/blog/2013/12/17/play-cocos2dx-31/"/>
     <updated>2013-12-17T14:11:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31</id>
+    <id>http://start530.github.io/blog/2013/12/17/play-cocos2dx-31</id>
     <content type="html"><![CDATA[<p>这里采用Apache+php搭建了一个简易服务器，服务端用php语言，客户端采用cocos2d-x的CCHttpClient类通过http方式访问服务端资源。模拟了cocos2d-x提交账户和密码到服务端，服务端校验帐号密码，如果正确返回客户端成功登录，如果错误则返回错误信息，同时在服务端后台保存登录log。第一次接触php，语法上和C/C++还是蛮像的，主要是给出一个cocos2d-x网络实例，代码中并没有做一些防呆纠错措施。</p>
 
 <h3>1.搭建Apache+php网页服务器</h3>
@@ -1264,15 +1264,15 @@
 
 <h3>6.源码下载</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6713471">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31/'><a href="http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31/">http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6713471">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/12/17/play-cocos2dx-31/'><a href="http://start530.github.io/blog/2013/12/17/play-cocos2dx-31/">http://start530.github.io/blog/2013/12/17/play-cocos2dx-31/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之三十】点九图和输入框的使用]]></title>
-    <link href="http://www.fusijie.com/blog/2013/12/13/play-cocos2dx-30/"/>
+    <link href="http://start530.github.io/blog/2013/12/13/play-cocos2dx-30/"/>
     <updated>2013-12-13T11:53:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/12/13/play-cocos2dx-30</id>
+    <id>http://start530.github.io/blog/2013/12/13/play-cocos2dx-30</id>
     <content type="html"><![CDATA[<p>登录界面一个帐号/密码输入框或者主角命名框是少不了的。这节就来了解一下点九图的输入框的使用。这里只是介绍基础知识，并不进行平台的移植，也不处理跨平台可能出现的问题。</p>
 
 <h3>1.点九图CCScale9Sprite</h3>
@@ -1463,15 +1463,15 @@
 
 <h3>4.源码下载</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6707427">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/13/play-cocos2dx-30/'><a href="http://www.fusijie.com/blog/2013/12/13/play-cocos2dx-30/">http://www.fusijie.com/blog/2013/12/13/play-cocos2dx-30/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6707427">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/12/13/play-cocos2dx-30/'><a href="http://start530.github.io/blog/2013/12/13/play-cocos2dx-30/">http://start530.github.io/blog/2013/12/13/play-cocos2dx-30/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十九】利用CCClipingNode做游戏遮罩]]></title>
-    <link href="http://www.fusijie.com/blog/2013/12/06/play-cocos2dx-29/"/>
+    <link href="http://start530.github.io/blog/2013/12/06/play-cocos2dx-29/"/>
     <updated>2013-12-06T10:41:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/12/06/play-cocos2dx-29</id>
+    <id>http://start530.github.io/blog/2013/12/06/play-cocos2dx-29</id>
     <content type="html"><![CDATA[<p>新手引导是游戏中必备的（除了奇葩的MT用一段动画开始），也是玩家对游戏的第一印象，重要性不言而喻。一般采用的遮罩的形式来突出引导重点，同时屏蔽其他功能。这里简单的介绍一下游戏遮罩的实现，并给出一个示例。</p>
 
 <h3>1.CCClipingNode</h3>
@@ -1648,15 +1648,15 @@
 
 <h3>5.源码</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6667189">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/06/play-cocos2dx-29/'><a href="http://www.fusijie.com/blog/2013/12/06/play-cocos2dx-29/">http://www.fusijie.com/blog/2013/12/06/play-cocos2dx-29/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6667189">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/12/06/play-cocos2dx-29/'><a href="http://start530.github.io/blog/2013/12/06/play-cocos2dx-29/">http://start530.github.io/blog/2013/12/06/play-cocos2dx-29/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十八】cocos2d-x的消息和数据传递]]></title>
-    <link href="http://www.fusijie.com/blog/2013/12/03/play-cocos2dx-28/"/>
+    <link href="http://start530.github.io/blog/2013/12/03/play-cocos2dx-28/"/>
     <updated>2013-12-03T09:57:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/12/03/play-cocos2dx-28</id>
+    <id>http://start530.github.io/blog/2013/12/03/play-cocos2dx-28</id>
     <content type="html"><![CDATA[<p>如何在层间或者场景间进行消息传递，大概是每个初学者都要面对的问题吧。这里介绍cocos2d-x的一种消息/数据传递方式，内置的观察者模式，也称消息通知中心，CCNotificationCenter。</p>
 
 <h3>1.CCNotificationCenter</h3>
@@ -1881,16 +1881,16 @@
 
 <p><a href="http://download.csdn.net/detail/jackyvincefu/6647453">下载地址</a></p>
 
-<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/03/play-cocos2dx-28/'>http://www.fusijie.com/blog/2013/12/03/play-cocos2dx-28/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/12/03/play-cocos2dx-28/'>http://start530.github.io/blog/2013/12/03/play-cocos2dx-28/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十七】CCSequence不能执行CCRepeatForever]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/28/play-cocos2dx-27/"/>
+    <link href="http://start530.github.io/blog/2013/11/28/play-cocos2dx-27/"/>
     <updated>2013-11-28T09:25:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/28/play-cocos2dx-27</id>
+    <id>http://start530.github.io/blog/2013/11/28/play-cocos2dx-27</id>
     <content type="html"><![CDATA[<p>之前在遇到这么一个问题，在CCSequence中加入CCRepeatForever，发现其他动作执行没问题，就是CCRepeatForever无法执行。代码并没有问题，很奇怪。</p>
 
 <h3>1.示例</h3>
@@ -2168,15 +2168,15 @@
 
 <h3>5.总结</h3>
 
-<p>虽然CCRepeatForever也同样继承于CCActionInterval，理论上是延时动作的子类，但是和一般的延时动作又有很大的不同，所以平时在使用的时候必须很小心，不能当成一般的CCActionInterval使用。而在cocos2d-x动作的分类上是不是应该把它从CCAction继承出来会比较好一点？<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/11/28/play-cocos2dx-27/'><a href="http://www.fusijie.com/blog/2013/11/28/play-cocos2dx-27/">http://www.fusijie.com/blog/2013/11/28/play-cocos2dx-27/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p>虽然CCRepeatForever也同样继承于CCActionInterval，理论上是延时动作的子类，但是和一般的延时动作又有很大的不同，所以平时在使用的时候必须很小心，不能当成一般的CCActionInterval使用。而在cocos2d-x动作的分类上是不是应该把它从CCAction继承出来会比较好一点？<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/11/28/play-cocos2dx-27/'><a href="http://start530.github.io/blog/2013/11/28/play-cocos2dx-27/">http://start530.github.io/blog/2013/11/28/play-cocos2dx-27/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十六】数据结构CCDictionary]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/26/play-cocos2dx-26/"/>
+    <link href="http://start530.github.io/blog/2013/11/26/play-cocos2dx-26/"/>
     <updated>2013-11-26T09:00:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/26/play-cocos2dx-26</id>
+    <id>http://start530.github.io/blog/2013/11/26/play-cocos2dx-26</id>
     <content type="html"><![CDATA[<p>CCDictionary在cocos2d-x中被大量的应用，比如CCTexureCache，CCSpriteFramCache等等。</p>
 
 <h3>1.实现原理</h3>
@@ -2438,16 +2438,16 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/11/26/play-cocos2dx-26/'>http://www.fusijie.com/blog/2013/11/26/play-cocos2dx-26/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/11/26/play-cocos2dx-26/'>http://start530.github.io/blog/2013/11/26/play-cocos2dx-26/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十五】数据结构CCArray]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/25/play-cocos2dx-25/"/>
+    <link href="http://start530.github.io/blog/2013/11/25/play-cocos2dx-25/"/>
     <updated>2013-11-25T13:53:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/25/play-cocos2dx-25</id>
+    <id>http://start530.github.io/blog/2013/11/25/play-cocos2dx-25</id>
     <content type="html"><![CDATA[<p>CCArray是从cocos2d中移植过来的，类似于Apple的NSMutableArray，但是比NSMutableArray更为的好用。要注意的是虽然CCArray和CCDictionary可以管理cocos2d-x中绝大多数的类，但是仍然无法替代STL库，STL库更为强有力。</p>
 
 <h3>1.API</h3>
@@ -2750,16 +2750,16 @@ CCArray中容量和个数并不是同一个概念。个数&lt;=容量。从添�
 
 <p>一般来说，CCArray不会被add到其他类，所以它的引用计数是1，而且被设置为自动释放。所以创建CCArray对象时要记得调用retain，而且在析构的时候也要调用release来释放内存。真心想吐槽。。。</p>
 
-<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/11/25/play-cocos2dx-25/'>http://www.fusijie.com/blog/2013/11/25/play-cocos2dx-25/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/11/25/play-cocos2dx-25/'>http://start530.github.io/blog/2013/11/25/play-cocos2dx-25/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十四】截图保存功能的实现]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/13/play-cocos2dx-24/"/>
+    <link href="http://start530.github.io/blog/2013/11/13/play-cocos2dx-24/"/>
     <updated>2013-11-13T08:34:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/13/play-cocos2dx-24</id>
+    <id>http://start530.github.io/blog/2013/11/13/play-cocos2dx-24</id>
     <content type="html"><![CDATA[<p>官方TestCpp有这个demo了，这里还是把它单独拖出来写一下，游戏推广的一个很重要组成就是玩家分享，所以游戏截图就起到很大作用了。截图功能通过CCRenderTexture实现。</p>
 
 <h3>1.CCRenderTexture</h3>
@@ -2830,15 +2830,15 @@ void CTestLayer::SaveScreenShot()
 
 <h3>4.源码下载</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6538305">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/11/13/play-cocos2dx-24/'><a href="http://www.fusijie.com/blog/2013/11/13/play-cocos2dx-24/">http://www.fusijie.com/blog/2013/11/13/play-cocos2dx-24/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6538305">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/11/13/play-cocos2dx-24/'><a href="http://start530.github.io/blog/2013/11/13/play-cocos2dx-24/">http://start530.github.io/blog/2013/11/13/play-cocos2dx-24/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十三】多线程和同步03-图片异步加载]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/11/play-cocos2dx-23/"/>
+    <link href="http://start530.github.io/blog/2013/11/11/play-cocos2dx-23/"/>
     <updated>2013-11-11T11:22:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/11/play-cocos2dx-23</id>
+    <id>http://start530.github.io/blog/2013/11/11/play-cocos2dx-23</id>
     <content type="html"><![CDATA[<p>cocos2d-x中和Android，Windows都一样，如果在主线程中处理一些耗时操作，那么主线程就会出现阻塞现象，表现在界面上就是卡住，未响应等情况。为了避免这种情况的出现，我们需要在后台开辟工作线程进行数据的处理，再采用消息传递或者其他形式来通知主线程进行UI变化。最常见的情况就是游戏进入前的loading。</p>
 
 <h3>1.图片的异步加载</h3>
@@ -3004,16 +3004,16 @@ void CTestLayer::showSprite(CCObject* obj)
 
 <p><a href="http://download.csdn.net/detail/jackyvincefu/6533293">下载地址</a></p>
 
-<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/11/11/play-cocos2dx-23/'>http://www.fusijie.com/blog/2013/11/11/play-cocos2dx-23/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/11/11/play-cocos2dx-23/'>http://start530.github.io/blog/2013/11/11/play-cocos2dx-23/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十二】多线程和同步02-售票]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/05/play-cocos2dx-22/"/>
+    <link href="http://start530.github.io/blog/2013/11/05/play-cocos2dx-22/"/>
     <updated>2013-11-05T11:12:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/05/play-cocos2dx-22</id>
+    <id>http://start530.github.io/blog/2013/11/05/play-cocos2dx-22</id>
     <content type="html"><![CDATA[<p>pthread有很多不同应用，官网都有相应的API解释和Sample，这里不再重复，本文主要介绍一个cocos2d-x多线程和同步示例。</p>
 
 <h3>1.售票</h3>
@@ -3227,15 +3227,15 @@ B Sell 1
 
 <h3>4.源码下载</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6503759">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/11/05/play-cocos2dx-22/'><a href="http://www.fusijie.com/blog/2013/11/05/play-cocos2dx-22/">http://www.fusijie.com/blog/2013/11/05/play-cocos2dx-22/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6503759">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/11/05/play-cocos2dx-22/'><a href="http://start530.github.io/blog/2013/11/05/play-cocos2dx-22/">http://start530.github.io/blog/2013/11/05/play-cocos2dx-22/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十一】多线程和同步01-pthread库]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/04/play-cocos2dx-21/"/>
+    <link href="http://start530.github.io/blog/2013/11/04/play-cocos2dx-21/"/>
     <updated>2013-11-04T11:01:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/04/play-cocos2dx-21</id>
+    <id>http://start530.github.io/blog/2013/11/04/play-cocos2dx-21</id>
     <content type="html"><![CDATA[<p>和其他框架一样，cocos2d-x允许我们使用多线程进行编程。cocos2d-x v2.2.0使用的是pthread库，是一套用户级线程库，被广泛地使用在跨平台应用上。</p>
 
 <h3>1.配置</h3>
@@ -3348,15 +3348,15 @@ PTW32_DLLPORT int PTW32_CDECL pthread_mutex_unlock (pthread_mutex_t * mutex);
 
 <p><em>（3）pthread_cond_wait()看起来有个bug，首次wait会失败，但是之后又会工作的很好。</em></p>
 
-<p><em>（4）OpenGL context也不是线程安全。</em><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/11/04/play-cocos2dx-21/'><a href="http://www.fusijie.com/blog/2013/11/04/play-cocos2dx-21/">http://www.fusijie.com/blog/2013/11/04/play-cocos2dx-21/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><em>（4）OpenGL context也不是线程安全。</em><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/11/04/play-cocos2dx-21/'><a href="http://start530.github.io/blog/2013/11/04/play-cocos2dx-21/">http://start530.github.io/blog/2013/11/04/play-cocos2dx-21/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十】从CCObject看cocos2d-x的内存管理机制]]></title>
-    <link href="http://www.fusijie.com/blog/2013/10/31/play-cocos2dx-20/"/>
+    <link href="http://start530.github.io/blog/2013/10/31/play-cocos2dx-20/"/>
     <updated>2013-10-31T18:13:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/10/31/play-cocos2dx-20</id>
+    <id>http://start530.github.io/blog/2013/10/31/play-cocos2dx-20</id>
     <content type="html"><![CDATA[<p>再看CCObject，剔除上节的拷贝相关，以及Lua脚本相关的属性和方法后，CCObject还剩下什么？</p>
 
 <h3>1.剩下什么？</h3>
@@ -3528,16 +3528,16 @@ void update(float delta)
 
 <p>至于为什么，大家翻一下addChild实现源码就知道啦~</p>
 
-<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/10/31/play-cocos2dx-20/'>http://www.fusijie.com/blog/2013/10/31/play-cocos2dx-20/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/10/31/play-cocos2dx-20/'>http://start530.github.io/blog/2013/10/31/play-cocos2dx-20/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之十九】从CCObject看cocos2d-x的拷贝机制]]></title>
-    <link href="http://www.fusijie.com/blog/2013/10/30/play-cocos2dx-19/"/>
+    <link href="http://start530.github.io/blog/2013/10/30/play-cocos2dx-19/"/>
     <updated>2013-10-30T18:08:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/10/30/play-cocos2dx-19</id>
+    <id>http://start530.github.io/blog/2013/10/30/play-cocos2dx-19</id>
     <content type="html"><![CDATA[<p>CCObject在之前的文章中出现了N次，它扮演了一个老祖宗的角色，但是它到底是做什么的？先从它看看cocos2d-x的拷贝机制吧。</p>
 
 <h3>1.CCCopying</h3>
@@ -3603,15 +3603,15 @@ void update(float delta)
 
 <h3>4.深拷贝和浅拷贝</h3>
 
-<p>其实不单是CCArray，cocos2d-x采用的都是深拷贝的方式，深拷贝和浅拷贝的概念和详解请移步<a href="http://blog.csdn.net/jackystudio/article/details/11553117">这里</a>。它们的区别在于当前对象是否包含了对其他资源的引用。在拷贝机制上采用深拷贝的方式，大大方便了我们对内存的管理，避免因资源的释放导致引用异常。这对于平时在进行一些自定义子类的拷贝处理上还是很有指导意义的。<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/10/30/play-cocos2dx-19/'><a href="http://www.fusijie.com/blog/2013/10/30/play-cocos2dx-19/">http://www.fusijie.com/blog/2013/10/30/play-cocos2dx-19/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p>其实不单是CCArray，cocos2d-x采用的都是深拷贝的方式，深拷贝和浅拷贝的概念和详解请移步<a href="http://blog.csdn.net/jackystudio/article/details/11553117">这里</a>。它们的区别在于当前对象是否包含了对其他资源的引用。在拷贝机制上采用深拷贝的方式，大大方便了我们对内存的管理，避免因资源的释放导致引用异常。这对于平时在进行一些自定义子类的拷贝处理上还是很有指导意义的。<p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/10/30/play-cocos2dx-19/'><a href="http://start530.github.io/blog/2013/10/30/play-cocos2dx-19/">http://start530.github.io/blog/2013/10/30/play-cocos2dx-19/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之十八】仿《中国好学霸》文字拖拽和定位]]></title>
-    <link href="http://www.fusijie.com/blog/2013/10/28/play-cocos2dx-18/"/>
+    <link href="http://start530.github.io/blog/2013/10/28/play-cocos2dx-18/"/>
     <updated>2013-10-28T18:00:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/10/28/play-cocos2dx-18</id>
+    <id>http://start530.github.io/blog/2013/10/28/play-cocos2dx-18</id>
     <content type="html"><![CDATA[<p>现在各种猜成语猜歌名好学霸之类的游戏火的一塌糊涂。本节就介绍下文字的拖拽和定位。</p>
 
 <h3>1.基本原理</h3>
@@ -3723,15 +3723,15 @@ void update(float delta)
 
 <h3>4.源码下载</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6463261">源码下载</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/10/28/play-cocos2dx-18/'><a href="http://www.fusijie.com/blog/2013/10/28/play-cocos2dx-18/">http://www.fusijie.com/blog/2013/10/28/play-cocos2dx-18/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6463261">源码下载</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/10/28/play-cocos2dx-18/'><a href="http://start530.github.io/blog/2013/10/28/play-cocos2dx-18/">http://start530.github.io/blog/2013/10/28/play-cocos2dx-18/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之十七】cocos2d-x中文显示]]></title>
-    <link href="http://www.fusijie.com/blog/2013/10/25/play-cocos2dx-17/"/>
+    <link href="http://start530.github.io/blog/2013/10/25/play-cocos2dx-17/"/>
     <updated>2013-10-25T16:53:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/10/25/play-cocos2dx-17</id>
+    <id>http://start530.github.io/blog/2013/10/25/play-cocos2dx-17</id>
     <content type="html"><![CDATA[<p>cocos2d-x的中文显示其实就是一个UTF-8编码在作怪而已，一种简单的方法就是把文本保存为UTF-8编码即可（注意不是UTF-8 + BOM），建议使用UE，Sublime Text或者EditPlus之类的本文编辑器。这里介绍另一种方法：通过读取xml文件显示中文，这种方法更利于软件的国际化，demo顺便实现了中英文切换。</p>
 
 <!-- more -->
@@ -3781,15 +3781,15 @@ this-&gt;addChild(pLabel, 1);
 
 <h3>4.源码下载</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6442201">源码下载</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/10/25/play-cocos2dx-17/'><a href="http://www.fusijie.com/blog/2013/10/25/play-cocos2dx-17/">http://www.fusijie.com/blog/2013/10/25/play-cocos2dx-17/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6442201">源码下载</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/10/25/play-cocos2dx-17/'><a href="http://start530.github.io/blog/2013/10/25/play-cocos2dx-17/">http://start530.github.io/blog/2013/10/25/play-cocos2dx-17/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之十六】滚动字幕和公告]]></title>
-    <link href="http://www.fusijie.com/blog/2013/10/24/play-cocos2dx-16/"/>
+    <link href="http://start530.github.io/blog/2013/10/24/play-cocos2dx-16/"/>
     <updated>2013-10-24T16:38:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/10/24/play-cocos2dx-16</id>
+    <id>http://start530.github.io/blog/2013/10/24/play-cocos2dx-16</id>
     <content type="html"><![CDATA[<p>滚动字幕和公告是游戏中经常使用到的元素，本文大致写一下实现方法，至于例子中具体的坐标值，请不要纠结。。。这和美工关系还是蛮大的。我PS技术太搓了。。。</p>
 
 <h3>1.原理</h3>
@@ -3877,7 +3877,7 @@ void CTestLayer::update(float delta)
 
 <h3>4.源码下载</h3>
 
-<p><a href="http://download.csdn.net/detail/jackyvincefu/6434549">源码下载</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/10/24/play-cocos2dx-16/'><a href="http://www.fusijie.com/blog/2013/10/24/play-cocos2dx-16/">http://www.fusijie.com/blog/2013/10/24/play-cocos2dx-16/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6434549">源码下载</a><p class='post-footer'>&nbsp;原文地址：<a href='http://start530.github.io/blog/2013/10/24/play-cocos2dx-16/'><a href="http://start530.github.io/blog/2013/10/24/play-cocos2dx-16/">http://start530.github.io/blog/2013/10/24/play-cocos2dx-16/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
 ]]></content>
   </entry>
   

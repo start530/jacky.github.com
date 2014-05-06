@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: uthash | Jacky's Blog]]></title>
-  <link href="http://www.fusijie.com/tags/uthash/atom.xml" rel="self"/>
-  <link href="http://www.fusijie.com/"/>
-  <updated>2014-05-06T22:14:16+08:00</updated>
-  <id>http://www.fusijie.com/</id>
+  <title><![CDATA[Tag: uthash | Star's Blog]]></title>
+  <link href="http://start530.github.io/tags/uthash/atom.xml" rel="self"/>
+  <link href="http://start530.github.io/"/>
+  <updated>2014-05-06T22:25:13+08:00</updated>
+  <id>http://start530.github.io/</id>
   <author>
     <name><![CDATA[FuSijie]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二十六】数据结构CCDictionary]]></title>
-    <link href="http://www.fusijie.com/blog/2013/11/26/play-cocos2dx-26/"/>
+    <link href="http://start530.github.io/blog/2013/11/26/play-cocos2dx-26/"/>
     <updated>2013-11-26T09:00:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/11/26/play-cocos2dx-26</id>
+    <id>http://start530.github.io/blog/2013/11/26/play-cocos2dx-26</id>
     <content type="html"><![CDATA[<p>CCDictionary在cocos2d-x中被大量的应用，比如CCTexureCache，CCSpriteFramCache等等。</p>
 
 <h3>1.实现原理</h3>

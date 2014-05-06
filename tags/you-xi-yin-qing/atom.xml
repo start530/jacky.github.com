@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: 游戏引擎 | Jacky's Blog]]></title>
-  <link href="http://www.fusijie.com/tags/you-xi-yin-qing/atom.xml" rel="self"/>
-  <link href="http://www.fusijie.com/"/>
-  <updated>2014-05-06T22:14:46+08:00</updated>
-  <id>http://www.fusijie.com/</id>
+  <title><![CDATA[Tag: 游戏引擎 | Star's Blog]]></title>
+  <link href="http://start530.github.io/tags/you-xi-yin-qing/atom.xml" rel="self"/>
+  <link href="http://start530.github.io/"/>
+  <updated>2014-05-06T22:31:52+08:00</updated>
+  <id>http://start530.github.io/</id>
   <author>
     <name><![CDATA[FuSijie]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之二】游戏和引擎构成]]></title>
-    <link href="http://www.fusijie.com/blog/2013/10/09/play-cocos2dx-02/"/>
+    <link href="http://start530.github.io/blog/2013/10/09/play-cocos2dx-02/"/>
     <updated>2013-10-09T16:53:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/10/09/play-cocos2dx-02</id>
+    <id>http://start530.github.io/blog/2013/10/09/play-cocos2dx-02</id>
     <content type="html"><![CDATA[<h3>1.游戏构成</h3>
 
 <p>我们以超级马里奥游戏作为蓝本来描述一下一个游戏的构成。</p>

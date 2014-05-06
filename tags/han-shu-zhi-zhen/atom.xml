@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: 函数指针 | Jacky's Blog]]></title>
-  <link href="http://www.fusijie.com/tags/han-shu-zhi-zhen/atom.xml" rel="self"/>
-  <link href="http://www.fusijie.com/"/>
-  <updated>2014-05-06T22:14:16+08:00</updated>
-  <id>http://www.fusijie.com/</id>
+  <title><![CDATA[Tag: 函数指针 | Star's Blog]]></title>
+  <link href="http://start530.github.io/tags/han-shu-zhi-zhen/atom.xml" rel="self"/>
+  <link href="http://start530.github.io/"/>
+  <updated>2014-05-06T22:31:52+08:00</updated>
+  <id>http://start530.github.io/</id>
   <author>
     <name><![CDATA[FuSijie]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[【玩转cocos2d-x之十一】定时器schedule]]></title>
-    <link href="http://www.fusijie.com/blog/2013/10/18/play-cocos2dx-11/"/>
+    <link href="http://start530.github.io/blog/2013/10/18/play-cocos2dx-11/"/>
     <updated>2013-10-18T08:08:00+08:00</updated>
-    <id>http://www.fusijie.com/blog/2013/10/18/play-cocos2dx-11</id>
+    <id>http://start530.github.io/blog/2013/10/18/play-cocos2dx-11</id>
     <content type="html"><![CDATA[<p>如果我们想定时执行一个动作怎么办？CCScheduler帮了我们一个大忙。</p>
 
 <h3>1.概况</h3>
