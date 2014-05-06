@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>【玩转cocos2d-x之三十二】xml的解析 - Jacky's Blog</title>
+  <meta name="author" content="FuSijie">
+
+  
+  <meta name="description" content="cocos2d-x中对xml的解析是采用的TinyXML库，而对plist的解析同时结合了CCDictionary来处理，这里简单介绍下cocos2d-x中解析xml的两种方式，也是常用的xml两个C++解析库：TinyXML和RapidXML。xml被设计用于数据存储和传输，重点是数据内容本身， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jacky's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '45386223']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jacky's Blog</a></h1>
+  
+    <h2>Stay Hungry,Stay Foolish!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.fusijie.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/projects">Projects</a></li>
+  <li><a href="/tag-cloud/">Tags</a></li>
+  <li><a href="http://news.fusijie.com" target="_blank">News</a></li>
+  <li><a href="http://code.fusijie.com" target="_blank">Code</a></li>
+  <li><a href="https://github.com/fusijie" target="_blank">Github</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">【玩转cocos2d-x之三十二】xml的解析</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-18T09:30:00+08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>cocos2d-x中对xml的解析是采用的TinyXML库，而对plist的解析同时结合了CCDictionary来处理，这里简单介绍下cocos2d-x中解析xml的两种方式，也是常用的xml两个C++解析库：TinyXML和RapidXML。xml被设计用于数据存储和传输，重点是数据内容本身，而不像html，用于表现数据。</p>
+
+<h3>1.TinyXML</h3>
+
+<p><strong>1.1.概况</strong></p>
+
+<p>TinyXML的<a href="http://www.grinninglizard.com/tinyxml/">主页</a>，本来不打算介绍这个库的，因为它的解析效率并不高，但是鉴于cocos2d-x采用的就是它，所以也稍微写一下它的用法，cocos2d-x使用的是TinyXML2，Github地址<a href="https://github.com/leethomason/tinyxml2">在这里</a>。就是对TinyXML重新进行了封装，具体的区别在其github上也写的很清楚了。</p>
+
+<!-- more -->
+
+
+<p><strong>1.2.示例</strong></p>
+
+<p>这里不介绍API，因为太多了，在线手册也都有。首先下载TinyXML库，将4个cpp文件和2个h文件加入cocos2d-x中。添加头文件时只需添加&#8221;<em>tinyxml.h</em>&ldquo;即可。</p>
+
+<p><strong>1.2.1.xml的创建</strong></p>
+
+<figure class='code'><figcaption><span>xml的创建</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'>  <span class="kt">void</span> <span class="n">TestLayer</span><span class="o">::</span><span class="n">writeTinyXML</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="n">TiXmlDocument</span><span class="o">*</span> <span class="n">myTinyXMLDoc</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlDocument</span><span class="p">();</span><span class="c1">//创建文档对象  </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">rootElement</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlElement</span><span class="p">(</span><span class="s">&quot;Jacky&quot;</span><span class="p">);</span><span class="c1">//创建根节点并连接到文档  </span>
+</span><span class='line'>      <span class="n">myTinyXMLDoc</span><span class="o">-&gt;</span><span class="n">LinkEndChild</span><span class="p">(</span><span class="n">rootElement</span><span class="p">);</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">infoElement</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlElement</span><span class="p">(</span><span class="s">&quot;Info&quot;</span><span class="p">);</span><span class="c1">//创建info节点并连接到根节点  </span>
+</span><span class='line'>      <span class="n">rootElement</span><span class="o">-&gt;</span><span class="n">LinkEndChild</span><span class="p">(</span><span class="n">infoElement</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">,</span><span class="s">&quot;Jacky&quot;</span><span class="p">);</span><span class="c1">//为info节点设置属性  </span>
+</span><span class='line'>      <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="p">(</span><span class="s">&quot;QQ&quot;</span><span class="p">,</span><span class="s">&quot;754505629&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="p">(</span><span class="s">&quot;E-mail&quot;</span><span class="p">,</span><span class="s">&quot;Geek.Jacky@Gmail.com&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">blogElement</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlElement</span><span class="p">(</span><span class="s">&quot;blog&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">LinkEndChild</span><span class="p">(</span><span class="n">blogElement</span><span class="p">);</span><span class="c1">//创建blog节点并连接到info节点  </span>
+</span><span class='line'>      <span class="n">TiXmlText</span><span class="o">*</span> <span class="n">blogtext</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlText</span><span class="p">(</span><span class="s">&quot;http://blog.csdn.net/jackystudio&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">blogElement</span><span class="o">-&gt;</span><span class="n">LinkEndChild</span><span class="p">(</span><span class="n">blogtext</span><span class="p">);</span><span class="c1">//为blog节点添加文本值  </span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">websiteElenment</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlElement</span><span class="p">(</span><span class="s">&quot;website&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">LinkEndChild</span><span class="p">(</span><span class="n">websiteElenment</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">TiXmlText</span><span class="o">*</span> <span class="n">websitetext</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlText</span><span class="p">(</span><span class="s">&quot;http://www.fusijie.com&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">websiteElenment</span><span class="o">-&gt;</span><span class="n">LinkEndChild</span><span class="p">(</span><span class="n">websitetext</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">myTinyXMLDoc</span><span class="o">-&gt;</span><span class="n">SaveFile</span><span class="p">(</span><span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">fullPathForFilename</span><span class="p">(</span><span class="s">&quot;testTiny.xml&quot;</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span><span class="c1">//保存xml  </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">delete</span> <span class="n">myTinyXMLDoc</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>是不是很奇怪为什么new了那么多内存，但最后只delete TixmlDocument呢？其实在TinyXML中，子节点的内存管理都由父节点进行维护，所以不必在释放内存时对每个子节点都进行释放，而只需要释放父节点即可。</p>
+
+<p><strong>1.2.2.xml的读取</strong></p>
+
+<figure class='code'><figcaption><span>xml的读取</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'>  <span class="kt">void</span> <span class="n">TestLayer</span><span class="o">::</span><span class="n">readTinyXML</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="n">TiXmlDocument</span><span class="o">*</span> <span class="n">myTinyXMLDoc</span><span class="o">=</span><span class="k">new</span> <span class="n">TiXmlDocument</span><span class="p">(</span><span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">fullPathForFilename</span><span class="p">(</span><span class="s">&quot;testTiny.xml&quot;</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span>
+</span><span class='line'>      <span class="n">myTinyXMLDoc</span><span class="o">-&gt;</span><span class="n">LoadFile</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">rootElement</span> <span class="o">=</span> <span class="n">myTinyXMLDoc</span><span class="o">-&gt;</span><span class="n">RootElement</span><span class="p">();</span>  <span class="c1">//获取根节点  </span>
+</span><span class='line'>      <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">infoElement</span> <span class="o">=</span> <span class="n">rootElement</span><span class="o">-&gt;</span><span class="n">FirstChildElement</span><span class="p">();</span>  <span class="c1">// 获取Info节点    </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">while</span> <span class="p">(</span><span class="n">infoElement</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">TiXmlAttribute</span><span class="o">*</span> <span class="n">attributeOfinfo</span> <span class="o">=</span> <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">FirstAttribute</span><span class="p">();</span>  <span class="c1">//获得info的属性    </span>
+</span><span class='line'>          <span class="k">while</span> <span class="p">(</span> <span class="n">attributeOfinfo</span> <span class="p">)</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="n">CCLOG</span><span class="p">(</span><span class="s">&quot;%s : %s&quot;</span><span class="p">,</span><span class="n">attributeOfinfo</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">(),</span><span class="n">attributeOfinfo</span><span class="o">-&gt;</span><span class="n">Value</span><span class="p">());</span><span class="c1">//获取所有属性  </span>
+</span><span class='line'>              <span class="n">attributeOfinfo</span> <span class="o">=</span> <span class="n">attributeOfinfo</span><span class="o">-&gt;</span><span class="n">Next</span><span class="p">();</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">blogElement</span> <span class="o">=</span> <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">FirstChildElement</span><span class="p">();</span><span class="c1">//获得blog  </span>
+</span><span class='line'>          <span class="n">CCLOG</span><span class="p">(</span><span class="s">&quot;blog : %s&quot;</span><span class="p">,</span><span class="n">blogElement</span><span class="o">-&gt;</span><span class="n">GetText</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">websiteElement</span> <span class="o">=</span> <span class="n">blogElement</span><span class="o">-&gt;</span><span class="n">NextSiblingElement</span><span class="p">();</span><span class="c1">//获取website    </span>
+</span><span class='line'>          <span class="n">CCLOG</span><span class="p">(</span><span class="s">&quot;website : %s&quot;</span><span class="p">,</span><span class="n">websiteElement</span><span class="o">-&gt;</span><span class="n">GetText</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">infoElement</span> <span class="o">=</span> <span class="n">infoElement</span><span class="o">-&gt;</span><span class="n">NextSiblingElement</span><span class="p">();</span><span class="c1">//查找下一节点    </span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">delete</span> <span class="n">myTinyXMLDoc</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h3>2.RapidXML</h3>
+
+<p><strong>2.1.概况</strong></p>
+
+<p>RapidXML的<a href="http://rapidxml.sourceforge.net/">主页</a>。在其手册中第四节<a href="http://rapidxml.sourceforge.net/manual.html#namespacerapidxml_1performance">comparison with others parsers</a>可以看到在同等条件下它的解析效率是TinyXML的30到60倍，所以如果需要解析大文件的话，RapidXML是不二之选。</p>
+
+<p><strong>2.2.示例</strong></p>
+
+<p>首先下载RapidXML库，将四个hpp文件都加入cocos2d-x中，在包含头文件时，4个hpp都要进行包含。</p>
+
+<p><strong>2.2.1.xml的创建</strong></p>
+
+<figure class='code'><figcaption><span>xml的创建</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'>  <span class="kt">void</span> <span class="n">TestLayer</span><span class="o">::</span><span class="n">writeRapidXML</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_document</span><span class="o">&lt;&gt;</span> <span class="n">myRapidXMLDoc</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">root</span> <span class="o">=</span> <span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">allocate_node</span><span class="p">(</span><span class="n">rapidxml</span><span class="o">::</span><span class="n">node_element</span><span class="p">,</span><span class="s">&quot;Jacky&quot;</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span><span class="c1">//创建根节点  </span>
+</span><span class='line'>      <span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">append_node</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="c1">//追加根节点  </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">info</span> <span class="o">=</span> <span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">allocate_node</span><span class="p">(</span><span class="n">rapidxml</span><span class="o">::</span><span class="n">node_element</span><span class="p">,</span><span class="s">&quot;Info&quot;</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span><span class="c1">//创建info节点  </span>
+</span><span class='line'>      <span class="n">info</span><span class="o">-&gt;</span><span class="n">append_attribute</span><span class="p">(</span><span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">allocate_attribute</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">,</span><span class="s">&quot;Jacky&quot;</span><span class="p">));</span>
+</span><span class='line'>      <span class="n">info</span><span class="o">-&gt;</span><span class="n">append_attribute</span><span class="p">(</span><span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">allocate_attribute</span><span class="p">(</span><span class="s">&quot;QQ&quot;</span><span class="p">,</span><span class="s">&quot;754505629&quot;</span><span class="p">));</span>
+</span><span class='line'>      <span class="n">info</span><span class="o">-&gt;</span><span class="n">append_attribute</span><span class="p">(</span><span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">allocate_attribute</span><span class="p">(</span><span class="s">&quot;E-mail&quot;</span><span class="p">,</span><span class="s">&quot;Geek.Jacky@Gmail.com&quot;</span><span class="p">));</span>
+</span><span class='line'>      <span class="n">root</span><span class="o">-&gt;</span><span class="n">append_node</span><span class="p">(</span><span class="n">info</span><span class="p">);</span><span class="c1">//追加info节点到root  </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//创建blog和website节点并追加到root  </span>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">blog</span> <span class="o">=</span> <span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">allocate_node</span><span class="p">(</span><span class="n">rapidxml</span><span class="o">::</span><span class="n">node_element</span><span class="p">,</span><span class="s">&quot;blog&quot;</span><span class="p">,</span><span class="s">&quot;http://blog.csdn.net/jackystudio&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">info</span><span class="o">-&gt;</span><span class="n">append_node</span><span class="p">(</span><span class="n">blog</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">website</span> <span class="o">=</span> <span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">allocate_node</span><span class="p">(</span><span class="n">rapidxml</span><span class="o">::</span><span class="n">node_element</span><span class="p">,</span><span class="s">&quot;website&quot;</span><span class="p">,</span><span class="s">&quot;http://www.fusijie.com&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">info</span><span class="o">-&gt;</span><span class="n">append_node</span><span class="p">(</span><span class="n">website</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//保存xml文档  </span>
+</span><span class='line'>      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">text</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">back_inserter</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="n">myRapidXMLDoc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">CCLog</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</span><span class='line'>      <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">out</span><span class="p">(</span><span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">fullPathForFilename</span><span class="p">(</span><span class="s">&quot;testRapid.xml&quot;</span><span class="p">));</span>
+</span><span class='line'>      <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">myRapidXMLDoc</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p><strong>2.2.2.xml的读取</strong></p>
+
+<figure class='code'><figcaption><span>xml的读取</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'>  <span class="kt">void</span> <span class="n">TestLayer</span><span class="o">::</span><span class="n">readRapidXML</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">file</span><span class="o">&lt;&gt;</span> <span class="n">fdoc</span><span class="p">(</span><span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">fullPathForFilename</span><span class="p">(</span><span class="s">&quot;testRapid.xml&quot;</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span><span class="c1">//读取数据  </span>
+</span><span class='line'>      <span class="n">CCLog</span><span class="p">(</span><span class="n">fdoc</span><span class="p">.</span><span class="n">data</span><span class="p">());</span>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_document</span><span class="o">&lt;&gt;</span> <span class="n">myRapidXMLDoc</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">parse</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">fdoc</span><span class="p">.</span><span class="n">data</span><span class="p">());</span><span class="c1">//将数据写入xml_document  </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">root</span> <span class="o">=</span> <span class="n">myRapidXMLDoc</span><span class="p">.</span><span class="n">first_node</span><span class="p">();</span><span class="c1">//获取根节点  </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">info</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">first_node</span><span class="p">();</span><span class="c1">//获取Info节点  </span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_attribute</span><span class="o">&lt;&gt;*</span> <span class="n">info_attr</span> <span class="o">=</span> <span class="n">info</span><span class="o">-&gt;</span><span class="n">first_attribute</span><span class="p">();</span><span class="c1">//获取info属性  </span>
+</span><span class='line'>      <span class="n">CCLog</span><span class="p">(</span><span class="s">&quot;%s:%s&quot;</span><span class="p">,</span><span class="n">info_attr</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">(),</span><span class="n">info_attr</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">());</span>
+</span><span class='line'>      <span class="n">CCLog</span><span class="p">(</span><span class="s">&quot;%s:%s&quot;</span><span class="p">,</span><span class="n">info_attr</span><span class="o">-&gt;</span><span class="n">next_attribute</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">(),</span><span class="n">info_attr</span><span class="o">-&gt;</span><span class="n">next_attribute</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">());</span>
+</span><span class='line'>      <span class="n">CCLog</span><span class="p">(</span><span class="s">&quot;%s:%s&quot;</span><span class="p">,</span><span class="n">info_attr</span><span class="o">-&gt;</span><span class="n">next_attribute</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">next_attribute</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">(),</span><span class="n">info_attr</span><span class="o">-&gt;</span><span class="n">next_attribute</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">next_attribute</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">blog</span><span class="o">=</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">first_node</span><span class="p">();</span><span class="c1">//获取blog节点  </span>
+</span><span class='line'>      <span class="n">CCLog</span><span class="p">(</span><span class="s">&quot;%s:%s&quot;</span><span class="p">,</span><span class="n">blog</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">(),</span><span class="n">blog</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">rapidxml</span><span class="o">::</span><span class="n">xml_node</span><span class="o">&lt;&gt;*</span> <span class="n">website</span><span class="o">=</span><span class="n">blog</span><span class="o">-&gt;</span><span class="n">next_sibling</span><span class="p">();</span><span class="c1">//获取website节点  </span>
+</span><span class='line'>      <span class="n">CCLog</span><span class="p">(</span><span class="s">&quot;%s:%s&quot;</span><span class="p">,</span><span class="n">website</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">(),</span><span class="n">website</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">());</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3.生成xml的文件</h3>
+
+<p>以上2种方式生成的xml文件内容如下：</p>
+
+<figure class='code'><figcaption><span>生成的xml文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;Jacky&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;Info</span> <span class="na">Name=</span><span class="s">&quot;Jacky&quot;</span> <span class="na">QQ=</span><span class="s">&quot;754505629&quot;</span> <span class="na">E-mail=</span><span class="s">&quot;Geek.Jacky@Gmail.com&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;blog&gt;</span>http://blog.csdn.net/jackystudio<span class="nt">&lt;/blog&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;website&gt;</span>http://www.fusijie.com<span class="nt">&lt;/website&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/Info&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/Jacky&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4.源码下载</h3>
+
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6732361">下载地址</a></p>
+
+<p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32/'>http://www.fusijie.com/blog/2013/12/18/play-cocos2dx-32/</a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">FuSijie</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-18T09:30:00+08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cocos2d-x/'>cocos2d-x</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+      <!-- JiaThis Button BEGIN -->
+  <section>
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1859056" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1859056" charset="utf-8"></script>
+</section>
+<!-- JiaThis Button END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+	    <p></p>
+        <a class="basic-alignment left" href="/blog/2013/12/17/play-cocos2dx-31/" title="Previous Post: 【玩转cocos2d-x之三十一】服务器的网络通信编程">&laquo; 【玩转cocos2d-x之三十一】服务器的网络通信编程</a>
+      
+      
+	    <p></p>
+        <a class="basic-alignment right" href="/blog/2013/12/26/play-cocos2dx-33/" title="Next Post: 【玩转cocos2d-x之三十三】游戏嵌入Webview网页">【玩转cocos2d-x之三十三】游戏嵌入Webview网页 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+  <section>
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fusijie"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->  
+</section>
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+		<br>
+		<center><a target="_blank" href="http://blog.csdn.net/jackystudio" style="text-decoration:none" ><img src="\images\aboutme.png" border=0></img></a></center>
+		</br>
+</section><section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/cocos2d-x/'>cocos2d-x (35)</a></li>
+
+  </ul>
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/25/play-cocos2dx-35/">【玩转cocos2d-x之三十五】《我叫MT offline》Demo</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/08/play-cocos2dx-34/">【玩转cocos2d-x之三十四】绘图：CCDrawingPrimitives和CCDrawNode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/26/play-cocos2dx-33/">【玩转cocos2d-x之三十三】游戏嵌入Webview网页</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/18/play-cocos2dx-32/">【玩转cocos2d-x之三十二】xml的解析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/play-cocos2dx-31/">【玩转cocos2d-x之三十一】服务器的网络通信编程</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  <section>
+<h1>Recent Comments</h1>
+<ul class="ds-recent-comments" data-num-items="10">
+</ul>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fusijie"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';
+ds.async = true;ds.src = 'http://static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</section>
+<section>
+  <h1>Sina Weibo</h1>
+  <ul id="weibo">
+    <li>
+      <iframe 
+        width="100%" 
+        height="450" 
+        class="share_self" 
+        frameborder="0" 
+        scrolling="no" 
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=450&fansRow=0&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1307211523&verifier=3619ee9c">
+      </iframe>
+    </li>
+  </ul>
+</section>
+ 
+<section>
+<h1>Visitor</h1>
+<div>
+	<p></p>
+    <center>
+	<a href="http://info.flagcounter.com/3pF8"><img src="http://s08.flagcounter.com/count/3pF8/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_12/viewers_3/labels_0/pageviews_1/flags_0/" alt="Flag Counter" border="0"></a>
+	</center>
+</div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - FuSijie -
+  <span class="credit">牛逼自豪有情怀地使用高大上的 <a href="http://octopress.org">Octopress</a></span>
+  <script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F966a6a480d428ebd0c0c55fcfb4f8a88' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</p>
+
+</footer>
+  <div id="full" style="width:0px; height:0px; position:fixed; right:70px; bottom:70px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+        <a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="Top"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

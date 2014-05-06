@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>【玩转cocos2d-x之三十一】服务器的网络通信编程 - Jacky's Blog</title>
+  <meta name="author" content="FuSijie">
+
+  
+  <meta name="description" content="这里采用Apache+php搭建了一个简易服务器，服务端用php语言，客户端采用cocos2d-x的CCHttpClient类通过http方式访问服务端资源。模拟了cocos2d-x提交账户和密码到服务端，服务端校验帐号密码，如果正确返回客户端成功登录，如果错误则返回错误信息， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jacky's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '45386223']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jacky's Blog</a></h1>
+  
+    <h2>Stay Hungry,Stay Foolish!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.fusijie.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/projects">Projects</a></li>
+  <li><a href="/tag-cloud/">Tags</a></li>
+  <li><a href="http://news.fusijie.com" target="_blank">News</a></li>
+  <li><a href="http://code.fusijie.com" target="_blank">Code</a></li>
+  <li><a href="https://github.com/fusijie" target="_blank">Github</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">【玩转cocos2d-x之三十一】服务器的网络通信编程</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-17T14:11:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>这里采用Apache+php搭建了一个简易服务器，服务端用php语言，客户端采用cocos2d-x的CCHttpClient类通过http方式访问服务端资源。模拟了cocos2d-x提交账户和密码到服务端，服务端校验帐号密码，如果正确返回客户端成功登录，如果错误则返回错误信息，同时在服务端后台保存登录log。第一次接触php，语法上和C/C++还是蛮像的，主要是给出一个cocos2d-x网络实例，代码中并没有做一些防呆纠错措施。</p>
+
+<h3>1.搭建Apache+php网页服务器</h3>
+
+<p>Apche2.2 x86版:<a href="http://pan.baidu.com/s/1vNuLF">下载地址</a></p>
+
+<p>php5.2.17版:<a href="http://pan.baidu.com/s/17sFoN">下载地址</a></p>
+
+<p>搭建过程参见<a href="http://tech.163.com/06/0206/11/299AMBLT0009159K.html">这里</a>，这里就不安装MySQL了。</p>
+
+<!-- more -->
+
+
+<p>搭建成功后，打开<a href="http://127.0.0.1">http://127.0.0.1</a>，就可以看到&#8221;<em>It&#8217; works!</em>&ldquo;字样。同时打开Apache monitor监控Apache处于运行状态。我这里使用的80端口。</p>
+
+<h3>2.php收集表单的方式</h3>
+
+<p>Http定义了与服务器交互的不同方法，最基本的方法有4种，分别是GET，POST，PUT，DELETE，对应着查改增删，这里介绍GET和POST。</p>
+
+<p>用$_GET获取表单数据，表单数据对任何人都是可见的，比如</p>
+
+<pre><code>http://www.w3school.com.cn/welcome.php?username=jackystudio&amp;password=123
+</code></pre>
+
+<p>用$_POST获取表单数据，表单数据则是不可见的，比如</p>
+
+<pre><code>http://www.w3school.com.cn/welcome.php
+</code></pre>
+
+<p>详细可见<a href="http://www.w3school.com.cn/php">w3school有关php章节</a>。</p>
+
+<h3>3.服务器php处理代码</h3>
+
+<p>这里我直接修改了主页index.html。会C++应该都能看懂，先是打开一个log.txt，接收到username和password，如果是username是jackystudio，password是123的话，把username和password写入log.txt，并返回登录成功，如果username或password错误时返回登录失败。如果未接收到则返回没有用户名密码。</p>
+
+<p><strong>3.1.采用get方式代码</strong></p>
+
+<figure class='code'><figcaption><span>Get方式</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>    <span class="nt">&lt;html&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>          <span class="cp">&lt;?php  </span>
+</span><span class='line'><span class="cp">         $open=fopen(&quot;log.txt&quot;,&quot;a&quot; ); //Save password  </span>
+</span><span class='line'><span class="cp">         if(isset($_GET[&quot;username&quot;]) &amp;&amp; isset($_GET[&quot;password&quot;]))  </span>
+</span><span class='line'><span class="cp">         {  </span>
+</span><span class='line'><span class="cp">             if($_GET[&quot;username&quot;]==&quot;jackystudio&quot; &amp;&amp; $_GET[&quot;password&quot;]==&quot;123&quot;)  </span>
+</span><span class='line'><span class="cp">             {  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;Username:&quot;.$_GET[&quot;username&quot;]);  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;\r\n&quot;);  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;Password:&quot;.$_GET[&quot;password&quot;]);  </span>
+</span><span class='line'><span class="cp">                 echo &quot;Login Success&quot;; //return to client  </span>
+</span><span class='line'><span class="cp">             }  </span>
+</span><span class='line'><span class="cp">             else  </span>
+</span><span class='line'><span class="cp">             {  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;Wrong Username or password!&quot;);  </span>
+</span><span class='line'><span class="cp">                 echo &quot;Login Failed&quot;; //return to client  </span>
+</span><span class='line'><span class="cp">             }  </span>
+</span><span class='line'><span class="cp">         }  </span>
+</span><span class='line'><span class="cp">         else  </span>
+</span><span class='line'><span class="cp">         {  </span>
+</span><span class='line'><span class="cp">             fwrite($open,&quot;No password&quot;);  </span>
+</span><span class='line'><span class="cp">             echo &quot;No Username or Password&quot;; //return to client  </span>
+</span><span class='line'><span class="cp">         }  </span>
+</span><span class='line'><span class="cp">         fclose($open);  </span>
+</span><span class='line'><span class="cp">         ?&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>3.2.采用post方式代码</strong></p>
+
+<figure class='code'><figcaption><span>Post方式</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>    <span class="nt">&lt;html&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>          <span class="cp">&lt;?php  </span>
+</span><span class='line'><span class="cp">         $open=fopen(&quot;log.txt&quot;,&quot;a&quot; ); //Save password  </span>
+</span><span class='line'><span class="cp">         if(isset($_POST[&quot;username&quot;]) &amp;&amp; isset($_POST[&quot;password&quot;]))  </span>
+</span><span class='line'><span class="cp">         {  </span>
+</span><span class='line'><span class="cp">             if($_POST[&quot;username&quot;]==&quot;jackystudio&quot; &amp;&amp; $_POST[&quot;password&quot;]==&quot;123&quot;)  </span>
+</span><span class='line'><span class="cp">             {  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;Username:&quot;.$_POST[&quot;username&quot;]);  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;\r\n&quot;);  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;Password:&quot;.$_POST[&quot;password&quot;]);  </span>
+</span><span class='line'><span class="cp">                 echo &quot;Login Success&quot;; //return to client  </span>
+</span><span class='line'><span class="cp">             }  </span>
+</span><span class='line'><span class="cp">             else  </span>
+</span><span class='line'><span class="cp">             {  </span>
+</span><span class='line'><span class="cp">                 fwrite($open,&quot;Wrong Username or password!&quot;);  </span>
+</span><span class='line'><span class="cp">                 echo &quot;Login Failed&quot;; //return to client  </span>
+</span><span class='line'><span class="cp">             }  </span>
+</span><span class='line'><span class="cp">         }  </span>
+</span><span class='line'><span class="cp">         else  </span>
+</span><span class='line'><span class="cp">         {  </span>
+</span><span class='line'><span class="cp">             fwrite($open,&quot;No password&quot;);  </span>
+</span><span class='line'><span class="cp">             echo &quot;No Username or Password&quot;; //return to client  </span>
+</span><span class='line'><span class="cp">         }  </span>
+</span><span class='line'><span class="cp">         fclose($open);  </span>
+</span><span class='line'><span class="cp">         ?&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4.cocos2d-x使用CCHttpClient类进行网络请求</h3>
+
+<p>CCHttpClient的使用这里也不赘述了，请移步官方文档How_to_use_CCHttpClient。这里在上文编辑框和点九图的基础上进行了修改。2个编辑框，分别是username和password。一个按钮点击发送请求。一个文本显示从服务器返回的结果。</p>
+
+<p><strong>4.1.按钮请求处理</strong></p>
+
+<figure class='code'><figcaption><span>按钮请求处理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'>    <span class="kt">void</span> <span class="n">TestLayer</span><span class="o">::</span><span class="n">btncallback</span><span class="p">(</span> <span class="n">CCObject</span><span class="o">*</span> <span class="n">pSender</span> <span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="kt">bool</span> <span class="n">requestType_is_get</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="c1">//采用get方式或者post方式  </span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">requestType_is_get</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="n">CCHttpRequest</span><span class="o">*</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCHttpRequest</span><span class="p">();</span><span class="c1">//创建请求对象  </span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1:80/index.html?&quot;</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">str2</span> <span class="o">=</span> <span class="n">p_User_EditBox</span><span class="o">-&gt;</span><span class="n">getText</span><span class="p">();</span><span class="c1">//获取username编辑框内容  </span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">str3</span> <span class="o">=</span> <span class="n">p_Psw_EditBox</span><span class="o">-&gt;</span><span class="n">getText</span><span class="p">();</span><span class="c1">//获取password编辑框内容  </span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">struser</span><span class="o">=</span><span class="s">&quot;username=&quot;</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">strpsw</span><span class="o">=</span><span class="s">&quot;&amp;password=&quot;</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">str1</span><span class="o">=</span><span class="n">str1</span><span class="o">+</span><span class="n">struser</span><span class="o">+</span><span class="n">str2</span><span class="o">+</span><span class="n">strpsw</span><span class="o">+</span><span class="n">str3</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setUrl</span><span class="p">(</span><span class="n">str1</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span><span class="c1">//设置请求的url，username和password已经包含在url中  </span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setRequestType</span><span class="p">(</span><span class="n">CCHttpRequest</span><span class="o">::</span><span class="n">kHttpGet</span><span class="p">);</span><span class="c1">//设置为Get模式  </span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setResponseCallback</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">httpresponse_selector</span><span class="p">(</span><span class="n">TestLayer</span><span class="o">::</span><span class="n">onHttpRequestCompleted</span><span class="p">));</span><span class="c1">//设置响应的回调  </span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setTag</span><span class="p">(</span><span class="s">&quot;GET test&quot;</span><span class="p">);</span>
+</span><span class='line'>          <span class="n">CCHttpClient</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">);</span><span class="c1">//发送请求  </span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">release</span><span class="p">();</span><span class="c1">//释放请求  </span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="n">CCHttpRequest</span><span class="o">*</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCHttpRequest</span><span class="p">();</span><span class="c1">//创建请求对象  </span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1:80/index.html&quot;</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">str2</span> <span class="o">=</span> <span class="n">p_User_EditBox</span><span class="o">-&gt;</span><span class="n">getText</span><span class="p">();</span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">str3</span> <span class="o">=</span> <span class="n">p_Psw_EditBox</span><span class="o">-&gt;</span><span class="n">getText</span><span class="p">();</span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">struser</span><span class="o">=</span><span class="s">&quot;username=&quot;</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">strpsw</span><span class="o">=</span><span class="s">&quot;&amp;password=&quot;</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">str2</span><span class="o">=</span><span class="n">struser</span><span class="o">+</span><span class="n">str2</span><span class="o">+</span><span class="n">strpsw</span><span class="o">+</span><span class="n">str3</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setUrl</span><span class="p">(</span><span class="n">str1</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span><span class="c1">//设置请求的url，只是请求页面的url，并不包含username和password  </span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setRequestType</span><span class="p">(</span><span class="n">CCHttpRequest</span><span class="o">::</span><span class="n">kHttpPost</span><span class="p">);</span><span class="c1">//设置为Post模式  </span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setResponseCallback</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">httpresponse_selector</span><span class="p">(</span><span class="n">TestLayer</span><span class="o">::</span><span class="n">onHttpRequestCompleted</span><span class="p">));</span><span class="c1">//设置响应的回调  </span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">postData</span> <span class="o">=</span> <span class="n">str2</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setRequestData</span><span class="p">(</span><span class="n">postData</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">postData</span><span class="p">));</span><span class="c1">//设置请求数据，也就是username和password  </span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">setTag</span><span class="p">(</span><span class="s">&quot;POST test&quot;</span><span class="p">);</span>
+</span><span class='line'>          <span class="n">CCHttpClient</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">);</span><span class="c1">//发送请求  </span>
+</span><span class='line'>          <span class="n">request</span><span class="o">-&gt;</span><span class="n">release</span><span class="p">();</span><span class="c1">//释放请求  </span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>4.2.响应回调处理</strong></p>
+
+<figure class='code'><figcaption><span>响应回调处理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'>  <span class="kt">void</span> <span class="n">TestLayer</span><span class="o">::</span><span class="n">onHttpRequestCompleted</span><span class="p">(</span> <span class="n">CCHttpClient</span><span class="o">*</span> <span class="n">client</span><span class="p">,</span> <span class="n">CCHttpResponse</span><span class="o">*</span> <span class="n">response</span> <span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">response</span><span class="o">-&gt;</span><span class="n">isSucceed</span><span class="p">())</span><span class="c1">//如果响应失败，输出错误信息  </span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="n">CCString</span> <span class="n">strError</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">strError</span><span class="p">.</span><span class="n">initWithFormat</span><span class="p">(</span><span class="s">&quot;Receive Error! </span><span class="se">\n</span><span class="s">%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">response</span><span class="o">-&gt;</span><span class="n">getErrorBuffer</span><span class="p">());</span>
+</span><span class='line'>          <span class="n">m_labelStatusCode</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">strError</span><span class="p">.</span><span class="n">getCString</span><span class="p">());</span>
+</span><span class='line'>          <span class="k">return</span> <span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">response</span><span class="o">-&gt;</span><span class="n">getResponseData</span><span class="p">();</span><span class="c1">//接收响应信息  </span>
+</span><span class='line'>      <span class="n">string</span> <span class="n">recieveData</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">buffer</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="n">recieveData</span> <span class="o">+=</span> <span class="p">(</span><span class="o">*</span><span class="n">buffer</span><span class="p">)[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="n">size_t</span> <span class="n">begin</span><span class="o">=</span> <span class="n">recieveData</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;&lt;body&gt;&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="p">;</span><span class="c1">//这里简单处理，获取&lt;body&gt;标签内数据，即是响应内容  </span>
+</span><span class='line'>      <span class="n">size_t</span> <span class="n">end</span><span class="o">=</span> <span class="n">recieveData</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;&lt;/body&gt;&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">string</span> <span class="n">result</span><span class="p">(</span><span class="n">recieveData</span><span class="p">,</span><span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="o">-</span><span class="n">begin</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">m_labelStatusCode</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>5.效果图</h3>
+
+<p><strong>5.1.Apache运行（Get和Post两种效果都是一样的）</strong></p>
+
+<p><em>（1）帐号密码正确时</em></p>
+
+<div align="center"><img src="http://img.blog.csdn.net/20131214145727843" alt="" border="0" title="登录成功" /><br></br></div>
+
+
+<p><em>（2）帐号密码错误时</em></p>
+
+<div align="center"><img src="http://img.blog.csdn.net/20131214145557531" alt="" border="0" title="登录失败" /><br></br></div>
+
+
+<p><strong>5.2.关闭Apache</strong></p>
+
+<div align="center"><img src="http://img.blog.csdn.net/20131214145740578" alt="" border="0" title="服务器关闭" /><br></br></div>
+
+
+<h3>6.源码下载</h3>
+
+<p><a href="http://download.csdn.net/detail/jackyvincefu/6713471">下载地址</a><p class='post-footer'>&nbsp;原文地址：<a href='http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31/'><a href="http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31/">http://www.fusijie.com/blog/2013/12/17/play-cocos2dx-31/</a></a><br/>&nbsp;版权声明：自由转载-非商用-非衍生-保持署名| <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">FuSijie</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-17T14:11:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cocos2d-x/'>cocos2d-x</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+      <!-- JiaThis Button BEGIN -->
+  <section>
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share?uid=1859056" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1859056" charset="utf-8"></script>
+</section>
+<!-- JiaThis Button END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+	    <p></p>
+        <a class="basic-alignment left" href="/blog/2013/12/13/play-cocos2dx-30/" title="Previous Post: 【玩转cocos2d-x之三十】点九图和输入框的使用">&laquo; 【玩转cocos2d-x之三十】点九图和输入框的使用</a>
+      
+      
+	    <p></p>
+        <a class="basic-alignment right" href="/blog/2013/12/18/play-cocos2dx-32/" title="Next Post: 【玩转cocos2d-x之三十二】xml的解析">【玩转cocos2d-x之三十二】xml的解析 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+  <section>
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fusijie"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->  
+</section>
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+		<br>
+		<center><a target="_blank" href="http://blog.csdn.net/jackystudio" style="text-decoration:none" ><img src="\images\aboutme.png" border=0></img></a></center>
+		</br>
+</section><section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/cocos2d-x/'>cocos2d-x (35)</a></li>
+
+  </ul>
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/25/play-cocos2dx-35/">【玩转cocos2d-x之三十五】《我叫MT offline》Demo</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/08/play-cocos2dx-34/">【玩转cocos2d-x之三十四】绘图：CCDrawingPrimitives和CCDrawNode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/26/play-cocos2dx-33/">【玩转cocos2d-x之三十三】游戏嵌入Webview网页</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/18/play-cocos2dx-32/">【玩转cocos2d-x之三十二】xml的解析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/play-cocos2dx-31/">【玩转cocos2d-x之三十一】服务器的网络通信编程</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  <section>
+<h1>Recent Comments</h1>
+<ul class="ds-recent-comments" data-num-items="10">
+</ul>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fusijie"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';
+ds.async = true;ds.src = 'http://static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</section>
+<section>
+  <h1>Sina Weibo</h1>
+  <ul id="weibo">
+    <li>
+      <iframe 
+        width="100%" 
+        height="450" 
+        class="share_self" 
+        frameborder="0" 
+        scrolling="no" 
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=450&fansRow=0&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1307211523&verifier=3619ee9c">
+      </iframe>
+    </li>
+  </ul>
+</section>
+ 
+<section>
+<h1>Visitor</h1>
+<div>
+	<p></p>
+    <center>
+	<a href="http://info.flagcounter.com/3pF8"><img src="http://s08.flagcounter.com/count/3pF8/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_12/viewers_3/labels_0/pageviews_1/flags_0/" alt="Flag Counter" border="0"></a>
+	</center>
+</div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - FuSijie -
+  <span class="credit">牛逼自豪有情怀地使用高大上的 <a href="http://octopress.org">Octopress</a></span>
+  <script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F966a6a480d428ebd0c0c55fcfb4f8a88' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</p>
+
+</footer>
+  <div id="full" style="width:0px; height:0px; position:fixed; right:70px; bottom:70px; z-index:100; text-align:center; background-color:transparent; cursor:pointer;">
+        <a href="#" onclick="goTop();return false;"><img src="/images/top.png" border=0 alt="Top"></a>
+</div>
+<script src="/javascripts/top.js" type="text/javascript"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
